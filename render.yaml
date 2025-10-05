@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: weather-backend
+    env: python
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "cd backend && python manage.py migrate && python manage.py runserver 0.0.0.0:$PORT"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: weather_prediction_backend.settings
+      - key: DEBUG
+        value: "False"

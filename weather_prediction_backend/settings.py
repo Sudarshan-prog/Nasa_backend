@@ -6,9 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-change-this-in-production-123456789'
 
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '*']
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,6 +30,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'weather_prediction_backend.urls'
